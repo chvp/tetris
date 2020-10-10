@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Petris</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      font-size: 36px;
+      text-align: center;
+      color: #fff;
+      background: #202028;
+    }
+
+    canvas#tetris {
+      height: 80vh;
+    }
+    canvas#nextPiece {
+      height: 16vh;
+      margin-bottom: 64vh;
+    }
+    canvas {
+      border: 10px solid #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <p id="score"></p>
+  <canvas id="tetris" width="240" height="400"></canvas>
+  <canvas id="nextPiece" width="80" height="80"></canvas>
+  <script src="./index.ts"></script>
+</body>
+
+</html>

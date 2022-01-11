@@ -17,7 +17,7 @@ jobs:
         with:
           name: chvp
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-          pushFilter: "(-source$|*.tgz|-modules-)"
+          pushFilter: "(-source$|\\.tgz$|-modules-|-offline$)"
       - run: nix flake update
       - run: nix build -L --no-link .#tetris
       - uses: stefanzweifel/git-auto-commit-action@v4.6.0

@@ -10,7 +10,7 @@
       packages.x86_64-linux.tetris = pkgs.mkYarnPackage rec {
         pname = "tetris";
         version = "unstable";
-        src = ./.;
+        src = pkgs.lib.cleanSourceWith { filter = name: type: !(builtins.elem name [ ".github" "flake.lock" "flake.nix" ]); src = ./.; name = "source"; };
         packageJSON = ./package.json;
         yarnLock = ./yarn.lock;
         yarnNix = ./yarn.nix;

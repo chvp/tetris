@@ -1,0 +1,19 @@
+name: Cachix
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.4.0
+      - uses: cachix/install-nix-action@v15
+      - name: Cachix
+        uses: cachix/cachix-action@v10
+        with:
+          name: chvp
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          pushFilter: "(-source$|*.tgz|-modules-)"
+      - run: nix build -L --no-link .#tetris

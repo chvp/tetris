@@ -22,5 +22,8 @@
         distPhase = "true";
       };
       defaultPackage.x86_64-linux = self.packages.x64_64-linux.tetris;
+      devShell.x86_64-linux = pkgs.mkShell {
+        buildInputs = [ pkgs.nixpkgs-fmt pkgs.yarn2nix ];
+      };
     };
 }

@@ -11,13 +11,13 @@ export interface IGame {
 
 const colors = [
   null,
-  '#e5282e',
-  '#f8d517',
-  '#df2384',
-  '#274696',
-  '#ef7e18',
-  '#5cad2c',
-  '#2cb099'
+  '#31C7EF',
+  '#5A65AD',
+  '#EF7921',
+  '#F7D308',
+  '#42B642',
+  '#AD4D9C',
+  '#EF2029'
 ]
 
 class Game implements IGame {

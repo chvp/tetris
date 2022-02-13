@@ -137,7 +137,7 @@ class Player implements IPlayer {
   }
 
   public dropInterval (): number {
-    return 1000 / ((Math.log(this.level()) / Math.log(4)) + 1)
+      return 1000 * Math.pow(0.8 - ((this.level() - 1) * 0.007), this.level() - 1)
   }
 
   public reset () {

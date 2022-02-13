@@ -38,8 +38,9 @@ class Game implements IGame {
     this.lastTime = time
 
     this.player.dropCounter += deltaTime
-    if (this.player.dropCounter > this.player.dropInterval()) {
+    while (this.player.dropCounter > this.player.dropInterval()) {
       this.player.drop(false);
+      this.player.dropCounter = Math.max(0, this.player.dropCounter - this.player.dropInterval())
     }
 
     this.draw()

@@ -76,11 +76,11 @@ class Player implements IPlayer {
       this.game.field.merge(this.piece, this.position)
       this.reset()
       this.game.field.sweep(this)
+      this.dropCounter = 0
     } else if (score) {
       this.score += 1
     }
     this.updateScore()
-    this.dropCounter = 0
   }
 
   public dropFull (): void {

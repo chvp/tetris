@@ -48,7 +48,7 @@ class Field implements IField {
 
         player.lines += 1
         player.score += rowCount * 10
-        rowCount *= 2
+        rowCount += 1
       }
     }
   }

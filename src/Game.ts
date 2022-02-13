@@ -39,7 +39,7 @@ class Game implements IGame {
 
     this.player.dropCounter += deltaTime
     if (this.player.dropCounter > this.player.dropInterval()) {
-      this.player.drop()
+      this.player.drop(false);
     }
 
     this.draw()

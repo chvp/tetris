@@ -14,7 +14,7 @@ export interface IPlayer {
   lines: number;
   score: number;
 
-  drop(): void;
+  drop(score: boolean): void;
   dropFull(): void;
   dropInterval(): number;
   fullDropPos(): IPosition
@@ -69,23 +69,24 @@ class Player implements IPlayer {
   constructor (public piece: IPiece, public nextPiece: IPiece) {
   }
 
-  public drop (): void {
+  public drop (score: boolean = true): void {
     this.position.y += 1
     if (this.game.field.collides(this.piece, this.position)) {
       this.position.y -= 1
       this.game.field.merge(this.piece, this.position)
       this.reset()
       this.game.field.sweep(this)
-      this.updateScore()
+    } else if (score) {
+      this.score += 1
     }
+    this.updateScore()
     this.dropCounter = 0
   }
 
   public dropFull (): void {
-    while (!this.game.field.collides(this.piece, this.position)) {
-      this.position.y += 1
-    }
-    this.position.y -= 1
+    const newPos = this.fullDropPos()
+    this.score += (newPos.y - this.position.y) * 2
+    this.position = newPos;
     this.game.field.merge(this.piece, this.position)
     this.reset()
     this.game.field.sweep(this)

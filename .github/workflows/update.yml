@@ -20,7 +20,9 @@ jobs:
           skipPush: true
       - run: nix flake update
       - run: nix build -L --no-link .#tetris
+      - run: nix build -L --no-link .#devShells.x86_64-linux.default
       - run: nix eval --json ".#tetris.outPath" | sed 's/"\(.*\)"/\1/' | cachix push chvp
+      - run: nix eval --json ".#devShells.x86_64-linux.default.outPath" | sed 's/"\(.*\)"/\1/' | cachix push chvp
       - uses: stefanzweifel/git-auto-commit-action@v4.14.1
         with:
           commit_message: "Update nixpkgs"

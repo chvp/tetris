@@ -25,6 +25,6 @@ jobs:
       - run: nix build -L --no-link .#devShells.x86_64-linux.default
       - run: nix eval --json ".#tetris.outPath" | sed 's/"\(.*\)"/\1/' | cachix push chvp
       - run: nix eval --json ".#devShells.x86_64-linux.default.outPath" | sed 's/"\(.*\)"/\1/' | cachix push chvp
-      - uses: stefanzweifel/git-auto-commit-action@v4.16.0
+      - uses: stefanzweifel/git-auto-commit-action@v5.0.0
         with:
           commit_message: "Update nixpkgs"

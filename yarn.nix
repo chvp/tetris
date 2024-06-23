@@ -1666,11 +1666,11 @@
       };
     }
     {
-      name = "typescript___typescript_5.4.5.tgz";
+      name = "typescript___typescript_5.5.2.tgz";
       path = fetchurl {
-        name = "typescript___typescript_5.4.5.tgz";
-        url  = "https://registry.yarnpkg.com/typescript/-/typescript-5.4.5.tgz";
-        sha512 = "vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==";
+        name = "typescript___typescript_5.5.2.tgz";
+        url  = "https://registry.yarnpkg.com/typescript/-/typescript-5.5.2.tgz";
+        sha512 = "NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==";
       };
     }
     {

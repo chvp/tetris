@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@parcel/config-default": "^2.13.0",
-    "@parcel/core": "^2.13.0",
+    "@parcel/core": "^2.13.1",
     "@parcel/transformer-typescript-tsc": "^2.13.0",
     "parcel": "^2.13.0",
     "typescript": "^5.6.3"

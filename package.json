@@ -10,7 +10,7 @@
     "@parcel/config-default": "^2.13.2",
     "@parcel/core": "^2.13.2",
     "@parcel/transformer-typescript-tsc": "^2.13.2",
-    "parcel": "^2.13.2",
+    "parcel": "^2.13.3",
     "typescript": "^5.7.2"
   }
 }

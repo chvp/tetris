@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768815382,
-        "narHash": "sha256-VpNS+Mvwe/P/103/Efh3LahxgJcDOLw4Dv0XmU+uekg=",
+        "lastModified": 1768818222,
+        "narHash": "sha256-460jc0+CZfyaO8+w8JNtlClB2n4ui1RbHfPTLkpwhU8=",
         "owner": "numtide",
         "repo": "devshell",
-        "rev": "4ec352197754d683981c9b779b31b77de9cae6a3",
+        "rev": "255a2b1725a20d060f566e4755dbf571bbbb5f76",
         "type": "github"
       },
       "original": {

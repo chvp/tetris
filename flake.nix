@@ -16,20 +16,29 @@
       {
         packages = rec {
           default = tetris;
-          tetris = pkgs.mkYarnPackage rec {
+          tetris = pkgs.stdenv.mkDerivation (finalAttrs: {
             pname = "tetris";
             version = "unstable";
             src = pkgs.lib.cleanSourceWith { filter = name: type: !(builtins.elem name [ ".github" "flake.lock" "flake.nix" ]); src = ./.; name = "source"; };
-            packageJSON = ./package.json;
-            yarnLock = ./yarn.lock;
-            yarnNix = ./yarn.nix;
-            buildPhase = "yarn run build";
+            yarnOfflineCache = pkgs.fetchYarnDeps {
+              yarnLock = ./yarn.lock;
+              hash = builtins.readFile ./yarn.lock.hash;
+            };
+
+            nativeBuildInputs = [
+              pkgs.yarnConfigHook
+              pkgs.yarnBuildHook
+              pkgs.yarnInstallHook
+              pkgs.nodejs
+            ];
+
             installPhase = ''
-              cp -r deps/tetris/dist $out
+              cp -r dist $out
               rm $out/*.map
             '';
+
             distPhase = "true";
-          };
+          });
         };
         devShells = rec {
           default = tetris;
@@ -37,8 +46,16 @@
             name = "Tetris";
             packages = with pkgs; [
               nixpkgs-fmt
-              yarn2nix
+              prefetch-yarn-deps
               yarn
+            ];
+            commands = [
+              {
+                name = "hash-yarn-lock";
+                category = "[general commands]";
+                help = "Update nix hash of yarn.lock";
+                command = "nix-hash --type sha256 --to-sri $(prefetch-yarn-deps 2>/dev/null) > yarn.lock.hash";
+              }
             ];
           };
         };

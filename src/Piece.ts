@@ -11,6 +11,7 @@ export interface IPiece {
   typesCount: number;
 
   createMatrix(type: Type): number[][];
+  createOffset(type: Type): {x: number, y: number};
   rotate(direction: Direction): void;
 }
 

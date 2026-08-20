@@ -1,5 +1,5 @@
-import { IField } from './Field'
-import { IPlayer, IPosition } from './Player'
+import type { IField } from './Field'
+import type { IPlayer, IPosition } from './Player'
 
 export interface IGame {
   context: CanvasRenderingContext2D;

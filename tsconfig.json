@@ -1,25 +1,19 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "outDir": "./dist/",
-    "sourceMap": true,
+    "target": "es2023",
     "module": "esnext",
-    "moduleResolution": "node",
-    "target": "es5",
-    "rootDir": "src",
-    "experimentalDecorators": true,
-    "lib": [
-      "es2017",
-      "es2018",
-      "dom",
-      "esnext.asynciterable",
-    ],
+    "lib": ["ES2023", "DOM"],
+    "types": ["vite/client"],
+    "allowArbitraryExtensions": true,
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "./src/**/*",
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-  ],
+  "include": ["src"]
 }

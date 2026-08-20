@@ -1,5 +1,5 @@
-import { IPiece } from './Piece'
-import { IPlayer, IPosition } from './Player'
+import type { IPiece } from './Piece'
+import type { IPlayer, IPosition } from './Player'
 
 export interface IField {
   width: number;

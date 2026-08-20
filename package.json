@@ -1,16 +1,12 @@
 {
   "name": "tetris",
   "version": "1.0.0",
-  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "dev": "vite serve",
+    "build": "tsc && vite build"
   },
   "devDependencies": {
-    "@parcel/config-default": "^2.13.3",
-    "@parcel/core": "^2.13.3",
-    "@parcel/transformer-typescript-tsc": "^2.13.3",
-    "parcel": "^2.13.3",
-    "typescript": "^5.7.2"
+    "typescript": "^6.0.3",
+    "vite": "^8.2.2"
   }
 }

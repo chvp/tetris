@@ -1,5 +1,5 @@
-import { IGame } from './Game'
-import { IPiece } from './Piece'
+import { type IGame } from './Game'
+import { type IPiece } from './Piece'
 
 export interface IPosition {
   x: number;
@@ -9,6 +9,7 @@ export interface IPosition {
 export interface IPlayer {
   game: IGame;
   piece: IPiece;
+  nextPiece: IPiece;
   position: IPosition;
   dropCounter: number;
   lines: number;
@@ -61,7 +62,7 @@ function shuffle<T> (array: Array<T>): void {
 class Player implements IPlayer {
   private pieceQueue: Array<number> = [];
   public dropCounter: number = 0;
-  public game: IGame;
+  public game!: IGame;
   public position: IPosition = { x: 0, y: 0 };
   public score: number = 0;
   public lines: number = 0;
@@ -145,7 +146,7 @@ class Player implements IPlayer {
     if (this.pieceQueue.length < 2) {
       this.pieceQueue.push(...this.shuffledPieces())
     }
-    const type = this.pieceQueue.shift()
+    const type = this.pieceQueue.shift()!
     this.piece.matrix = this.piece.createMatrix(type)
     this.nextPiece.matrix = this.nextPiece.createMatrix(this.pieceQueue[0])
     this.nextPiece.nextOffset = this.nextPiece.createOffset(this.pieceQueue[0])
@@ -162,11 +163,11 @@ class Player implements IPlayer {
   }
 
   public updateScore (): void {
-    document.getElementById('score').innerText = `Score: ${this.score} - Lines: ${this.lines} - Level: ${this.level()}`
+    document.getElementById('score')!.innerText = `Score: ${this.score} - Lines: ${this.lines} - Level: ${this.level()}`
   }
 
   private shuffledPieces (): Array<number> {
-    const val = new Array(this.piece.typesCount).fill(0).map((val, i) => i)
+    const val = new Array(this.piece.typesCount).fill(0).map((_val, i) => i)
     shuffle(val)
     return val
   }

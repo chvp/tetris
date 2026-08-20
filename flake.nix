@@ -22,10 +22,7 @@
             pkgs = pkgs'.extend inputs.devshell.overlays.default;
           in
           {
-            tetris = pkgs.devshell.mkShell {
-              name = "Tetris";
-              packages = [ pkgs.nixpkgs-fmt pkgs.nodejs ];
-            };
+            tetris = pkgs.callPackage ./shell.nix { };
             default = inputs.self.devShells.${system}.tetris;
           }
         )

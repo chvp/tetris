@@ -3,13 +3,18 @@
 , importNpmLock
 }:
 
+let
+  buildFiles = lib.fileset.fileFilter (file: builtins.elem file.name [ "package.json" "package-lock.json" ".parcelrc" "tsconfig.json" ]) ./.;
+  allFiles = lib.fileset.union buildFiles ./src;
+  src = lib.fileset.toSource { root = ./.; fileset = allFiles; };
+in
 buildNpmPackage {
+  inherit src;
   pname = "tetris";
   version = "unstable";
-  src = lib.cleanSourceWith { filter = name: type: !(builtins.elem name [ ".github" "flake.lock" "flake.nix" ]); src = ./.; name = "source"; };
   npmConfigHook = importNpmLock.npmConfigHook;
   npmDeps = importNpmLock {
-    npmRoot = ./.;
+    npmRoot = src;
   };
 
   installPhase = ''

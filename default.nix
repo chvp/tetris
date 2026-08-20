@@ -4,7 +4,7 @@
 }:
 
 let
-  buildFiles = lib.fileset.fileFilter (file: builtins.elem file.name [ "package.json" "package-lock.json" ".parcelrc" "tsconfig.json" "index.html" ]) ./.;
+  buildFiles = lib.fileset.fileFilter (file: builtins.elem file.name [ "package.json" "package-lock.json" "tsconfig.json" "index.html" ]) ./.;
   allFiles = lib.fileset.union buildFiles ./src;
   src = lib.fileset.toSource { root = ./.; fileset = allFiles; };
 in

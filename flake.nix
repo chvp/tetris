@@ -24,20 +24,8 @@
           {
             tetris = pkgs.devshell.mkShell {
               name = "Tetris";
-              packages = [
-                pkgs.nixpkgs-fmt
-                pkgs.prefetch-yarn-deps
-                pkgs.yarn
-              ];
+              packages = [ pkgs.nixpkgs-fmt pkgs.nodejs ];
             };
-            commands = [
-              {
-                name = "hash-yarn-lock";
-                category = "[general commands]";
-                help = "Update nix hash of yarn.lock";
-                command = "nix-hash --type sha256 --to-sri $(prefetch-yarn-deps 2>/dev/null) > yarn.lock.hash";
-              }
-            ];
             default = inputs.self.devShells.${system}.tetris;
           }
         )

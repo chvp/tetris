@@ -1,7 +1,7 @@
 {
   description = "A flake for my version of tetris";
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     devshell = {
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";

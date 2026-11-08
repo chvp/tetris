@@ -8,24 +8,15 @@
     };
   };
 
-  outputs = inputs:
-    {
-      packages = builtins.mapAttrs
-        (system: pkgs: {
-          tetris = pkgs.callPackage ./default.nix { };
-          default = inputs.self.packages.${system}.tetris;
-        })
-        inputs.nixpkgs.legacyPackages;
-      devShells = builtins.mapAttrs
-        (system: pkgs':
-          let
-            pkgs = pkgs'.extend inputs.devshell.overlays.default;
-          in
-          {
-            tetris = pkgs.callPackage ./shell.nix { };
-            default = inputs.self.devShells.${system}.tetris;
-          }
-        )
-        inputs.nixpkgs.legacyPackages;
-    };
+  outputs = inputs: {
+    packages = builtins.mapAttrs (system: pkgs: {
+      tetris = pkgs.callPackage ./default.nix { };
+      default = inputs.self.packages.${system}.tetris;
+    }) inputs.nixpkgs.legacyPackages;
+    overlays.default = (
+      self: super: {
+        tetris = self.callPackage ./default.nix { };
+      }
+    );
+  };
 }

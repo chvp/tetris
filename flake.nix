@@ -1,12 +1,7 @@
 {
   description = "A flake for my version of tetris";
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
   outputs = inputs: {
     packages = builtins.mapAttrs (system: pkgs: {

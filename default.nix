@@ -1,17 +1,31 @@
-{ buildNpmPackage
-, lib
-, importNpmLock
+{
+  buildNpmPackage,
+  lib,
+  importNpmLock,
+  nodejs_26,
 }:
 
 let
-  buildFiles = lib.fileset.fileFilter (file: builtins.elem file.name [ "package.json" "package-lock.json" "tsconfig.json" "index.html" ]) ./.;
+  buildFiles = lib.fileset.fileFilter (
+    file:
+    builtins.elem file.name [
+      "package.json"
+      "package-lock.json"
+      "tsconfig.json"
+      "index.html"
+    ]
+  ) ./.;
   allFiles = lib.fileset.union buildFiles ./src;
-  src = lib.fileset.toSource { root = ./.; fileset = allFiles; };
+  src = lib.fileset.toSource {
+    root = ./.;
+    fileset = allFiles;
+  };
+  nodejs = nodejs_26;
 in
 buildNpmPackage {
-  inherit src;
+  inherit src nodejs;
   pname = "tetris";
-  version = "unstable";
+  version = (lib.importJSON ./package.json).version;
   npmConfigHook = importNpmLock.npmConfigHook;
   npmDeps = importNpmLock {
     npmRoot = src;
@@ -22,4 +36,6 @@ buildNpmPackage {
   '';
 
   distPhase = "true";
+
+  passthru.nodejs = nodejs;
 }

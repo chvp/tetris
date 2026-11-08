@@ -22,5 +22,4 @@ jobs:
           endpoint: https://attic.chvp.be
           cache: chvp
           token: '${{ secrets.ATTIC_AUTH_TOKEN }}'
-      - run: nix build -L --no-link .#tetris
-      - run: nix build -L --no-link .#devShells.x86_64-linux.default
+      - run: nix build -L --no-link ./dev#devShells.x86_64-linux.default
